@@ -1,7 +1,6 @@
 from random import *
-
+from cal import eval
 def generate_quiz():
-    # Hint: Return [x, y, op, result]
     x = randint(1, 10)
     y = randint(1, 10)
     error = randint(-1, 1)
@@ -22,13 +21,8 @@ def generate_quiz():
     return [x, y, op, result]
 
 def check_answer(x, y, op, result, user_choice):
+    true_result = eval(x, y, op)
     if user_choice:
-        if generate_quiz() != result:
-            return True
-        else:
-            return False
+        return true_result == result
     else:
-        if generate_quiz() == result:
-            return False
-        else:
-            return True
+        return true_result != result
